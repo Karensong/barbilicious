@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Barbie Wars Game</title>
+
+    <link rel="stylesheet" href="barbie.css">
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ <script src="https://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+    ///start of javascript ////
+  $(document).ready(function() {
+    // $("#barbcar").animate({left: '500px'});
+    // var div = $("#barbcar");
+    // div.animate({left: '500px'});
+
+    // $("#barbcar").animate({
+    //   left: "+=500"
+    // }), 5000;
+//     $( "#barbielogosdiv" ).click(function() {
+//   $( "#movingObject" ).animate({
+//     left: "+=50",
+//   }, 5000, function() {
+//     // Animation complete.
+//   });
+// });
+  
+  // $("#barbcar").css('left', function(){ return $(this).offset().left; })
+  //            .animate({"left":"0px"}, "slow"); 
+    
+     $(".barbiecar").animate({ left: "-=900px" }, "slow");
+    // function doMove() {
+    //   $("#barbcar").animate({
+
+    //     console.log( $('#barbcar').css("left") )
+    //     left: ($("#barbcar").css("left")-10)+"px"
+
+
+    //   }, 5000, function() {
+    // // Animation complete.
+    //   });
+     
+    //   $('#barbcar').css('left', ($('divname').css('left')-10)+'px')
+    //   setTimeout(doMove,20);
+    // }
+
+  
+//global variables//jquery slide function
+ 
+    var chosenDoll;
+    var barbenemies;
+    var defenderBarbie;
+    var audioElement = document.createElement("audio");
+   audioElement.setAttribute("src", "barbiesong.mp3");
+   audioElement.play();
+// doll objects ///
+var marieDoll = {
+ name: "Marie",
+ barbieAttack: 5, 
+ bp: 100,
+ plasticAttack: 8, //only used when a defender
+}
+var julieDoll = {
+ name: "Julie",
+ barbieAttack: 2, 
+ bp: 125,
+ plasticAttack: 10,
+}
+var kennyDoll = {
+ name: "Kenny",
+ barbieAttack: 8, 
+ bp: 20,
+ plasticAttack: 15,
+}
+var ashDoll = {
+ name: "Ash",
+ barbieAttack: 10 , 
+ bp: 85,
+ plasticAttack: 20,
+}
+var kellyDoll = {
+ name: "Kelly",
+ barbieAttack: 20, 
+ bp: 90,
+ plasticAttack: 5,
+}
+var stopper = 
+$("#marie-doll").on("click", function() {
+    $("#chosendollspan").html('<button id="marie-doll"><img src="Marie.png"></button>');
+    $("#doll-buttons").empty();
+      $("#barbenemiesspan").html('<button id="julie-doll"><img src="Julie.png"></button><button id="kenny-doll"><img src="Kenny.png"></button><button id="ash-doll"><img src="Ash.png"></button><button id="kelly-doll"><img src="Kelly.png"></button>' );
+        chosenDoll = marieDoll;
+$("#julie-doll").on("click", function() {
+    $("#defenderspan").html('<button id="julie-doll"><img src="Julie.png"></button>');
+      $("#barbenemiesspan").html('<button id="kenny-doll"><img src="Kenny.png"></button><button id="ash-doll"><img src="Ash.png"></button><button id="kelly-doll"><img src="Kelly.png"></button>' );
+    $("#attack-button").on("click", function(){
+        defenderBarbie = julieDoll;
+        defenderBarbie.bp = defenderBarbie.bp - chosenDoll.barbieAttack;
+        chosenDoll.bp = chosenDoll.bp - defenderBarbie.plasticAttack;
+        console.log(defenderBarbie.bp)
+        console.log(chosenDoll.bp);
+        if(chosenDoll.bp > 0){
+          var tally = chosenDoll.barbieAttack++;
+          $("#gamestatus").html(defenderBarbie.name);
+        }
+        else if(chosenDoll.bp <= 0){
+          $("#gamestatus").html("blah");
+        }
+        if (defenderBarbie.bp == 0){
+          tally = tally++;
+          $("#gamestatus").html("<h2>You have defeated barbenemie</h2>");
+        }
+      });
+    });
+    });
+});
+//    var wins = 0;
+//    var losses = 0; 
+//    var totalprice =0;;
+//    var computerchoice = Math.floor((Math.random()*102) + 19);
+  
+//    function tallyPrice() {
+//     console.log(computerchoice);
+//     $('#budgetprice').html(computerchoice + "K");
+//     alert(computerchoice);
+//    };
+//    tallyPrice();
+//   var ringonenumber = Math.floor((Math.random()*12) + 1);
+//   var ringtwonumber = Math.floor((Math.random()*12) + 1);
+//   var ringthreenumber = Math.floor((Math.random()*12) + 1);
+//   var ringfournumber = Math.floor((Math.random()*12) + 1);
+//     function reset(){
+//       computerchoice =Math.floor(Math.random()*102+19);
+//       tallyPrice();
+//       totalprice= 0;
+//       $('#cartprice').html(totalprice + "K");
+//       } 
+//     $("#ringone").on("click", function() {
+//       totalprice = totalprice + ringonenumber;
+//       console.log(totalprice);
+//       $('#cartprice').html(totalprice + "K");
+//       alert(totalprice);
+//     if (totalprice === computerchoice) {
+//       wins++;
+//       $("#yeses").html(wins);
+//       console.log(wins);
+//       alert("She said yes!");
+//       reset();
+  
+//     }
+      
+//    else if (totalprice > computerchoice) {
+//       losses++;
+//       $("#noes").html(losses);
+//       console.log(losses);
+//       alert("She said no!");
+//       reset();
+      
+//     }
+//   });
+//     $("#ringtwo").on("click", function() {
+//       totalprice= totalprice + ringtwonumber;
+//       console.log(totalprice);
+//       $('#cartprice').html(totalprice + "K");
+//       alert(totalprice);
+//     if (totalprice === computerchoice) {
+//       wins++;
+//       $("#yeses").html(wins);
+//       console.log(wins);
+//       alert("She said yes!");
+//       reset();
+  
+//     }
+      
+//    else if (totalprice > computerchoice) {
+//       losses++;
+//       $("#noes").html(losses);
+//       console.log(losses);
+//       alert("She said no!");
+//       reset();
+      
+//     }
+//   });
+//     $("#ringthree").on("click", function() {
+//       totalprice= totalprice + ringthreenumber;
+//       console.log(totalprice);
+//       $("#cartprice").html(totalprice + "K");
+//       alert(totalprice);
+//     if (totalprice === computerchoice) {
+//       wins++;
+//       $("#yeses").html(wins);
+//       console.log(wins);
+//       alert("She said yes!");
+//       reset();
+  
+//     }
+      
+//    else if (totalprice > computerchoice) {
+//       losses++;
+//       $("#noes").html(losses);
+//       console.log(losses);
+//       alert("She said no!");
+//       reset();
+//     }
+//   });
+//     $("#ringfour").on("click", function() {
+//       totalprice= totalprice + ringfournumber;
+//       console.log(totalprice);
+//       $("#cartprice").html(totalprice + "K");
+//       alert(totalprice);
+//     if (totalprice === computerchoice) {
+//       wins++;
+//       $("#yeses").html(wins);
+//       console.log(wins);
+//       alert("She said yes!");
+//       reset();
+  
+//     }
+      
+//    else if (totalprice > computerchoice) {
+//       losses++;
+//       $("#noes").html(losses);
+//       console.log(losses);
+//       alert("She said no!");
+//       reset();
+//     }
+//     });
+    
+// });
+</script>
+  </head>
+  <body>
+    <div id="gametitle">
+      <div id="barbielogosdiv">
+      <h1><img id="barbielogos" height=150px width=300px src="barbielogo.png">Wars</h1>
+
+    <div class="movingObject">
+    <!-- <img height=300px width=400px src="car.jpg" class="img barbcar"> -->
+    <!-- <img src="barbiecar.jpg" alt="" class="img barbiecar" style="position:absolute; top:50px; left: 80px; z-index: -20; height: 300px; width:400px"> -->
+    <img src="barbiecar.jpg" alt="" class="img barbiecar" style="position:absolute; top:200px; left: 1050px; z-index: -20; height: 300px; width:400px">
+    <!-- <img src="barbiecar.jpg" alt="" class="img barbiecar" style="margin-top: 10px; left: 1000px; z-index: -20; height: 300px; width:400px">
+ -->
+    </div>
+    </div>
+    <div id="gamerules" style="position:absolute; top:500px">
+      <p>Pick a character</p>
+      <p>That character will be facing other dolls</p>
+      <p>When the beauty points (BP's) reach 0, the barbenemy is defeated. Keep in mind if you lose all your BPs you lose.</p> 
+      <p>Your character can attack using Barbie Attack power! Keep in mind as the game progresses your Barbie Attack power increases by your Barbie Attack base power.</p>
+      <p>A barbenemy can Plastic Attack you! Beware.</p>
+      <p>Let the best doll win!</p>
+    </div>
+    <div id="doll-buttons" style="position:absolute; top:750px">
+    <h2>Choose your Barbie or Ken below</h2>
+    
+    <button id="marie-doll"><img src="Marie.png"></button>
+    <button id="julie-doll"><img src="Julie.png"></button>
+    <button id="kenny-doll"><img src="Kenny.png"></button>
+    <button id="ash-doll"><img src="Ash.png"></button>
+    <button id="kelly-doll"><img src="Kelly.png"></button>
+    </div>
+    <div id="chosen-doll" style="position:absolute; top:1050px">
+    <h2>Your Barbie</h2>
+    <span id="chosendollspan"></span>
+    </div>
+    <div id="barbenemies" style="position:absolute; top:1150px">
+    <h2>Barbenemies Ready to Attack!</h2>
+    <span id="barbenemiesspan"></span>
+    </div>
+    <div id="fight-section" style="position:absolute; top:1250px">
+    <h2>Fight Section</h2>
+    <span id="fightspan"></span>
+    <button id="attack-button">Attack</button>
+    </div>
+    <div id="defender" style="position:absolute; top:1350px">
+    <h2>Defender Barbie</h2>
+   <span id="defenderspan"></span>
+    </div>
+    <div id="gamestatus">
+    </div>
+  
+  </body>
+</html>

@@ -1,0 +1,14 @@
+#gametitle, 
+#gamerules {
+	text-align: center;
+}
+
+#gamerules {
+	border: solid black 5px;
+}
+
+body {
+    background-image: url(closet.png) opacity: 0.8;
+    /*opacity: 0.5;*/
+    height: 100%;
+}
